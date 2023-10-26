@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -19,6 +20,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Component
 public class JwtAuthenticatorFilter extends OncePerRequestFilter {
 
 	private Logger logger = LoggerFactory.getLogger(OncePerRequestFilter.class);
@@ -45,7 +47,7 @@ public class JwtAuthenticatorFilter extends OncePerRequestFilter {
 		String username = null;
 		String token = null;
 
-		if (requestHeader != null && requestHeader.startsWith("Bearer")) {
+		if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
 			// looking good
 			token = requestHeader.substring(7);
 			try {

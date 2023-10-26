@@ -1,5 +1,6 @@
 package com.jwt.example.jwtexample3.security;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class JwtHelper {
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
 	// public static final long JWT_TOKEN_VALIDITY = 60;
-	private String secret = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
+	private String secret = "ghghgjhfdyetryetrjeghegfdyuetryterteyurfgruy43874683764hge";
 
 	// retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
@@ -59,10 +60,9 @@ public class JwtHelper {
 	// Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
 	// compaction of the JWT to a URL-safe string
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
-
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret).compact();
+				.signWith(SignatureAlgorithm.HS256, secret).compact();
 	}
 
 	// validate token

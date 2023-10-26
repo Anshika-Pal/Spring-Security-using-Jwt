@@ -16,8 +16,7 @@ import com.jwt.example.jwtexample3.service.UserService;
 @RestController
 @RequestMapping("/home")
 public class HomeController {
-	
-	
+
 	@Autowired
 	private UserService userService;
 	
