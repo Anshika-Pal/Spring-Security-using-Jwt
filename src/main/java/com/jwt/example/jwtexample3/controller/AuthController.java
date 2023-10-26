@@ -1,4 +1,4 @@
-package com.jwt.example.jwtexample3.config;
+package com.jwt.example.jwtexample3.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,13 +36,18 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
-
+		System.out.println("Request1-"+request);
 		this.doAuthenticate(request.getEmail(), request.getPassword());
+		System.out.println("Request2-"+request);
 
 		UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+		System.out.println("Request3-"+request);
+		System.out.println("Request3-"+userDetails);
 		String token = this.helper.generateToken(userDetails);
 
+		System.out.println("Request4-"+request);
 		JwtResponse response = new JwtResponse().setJwtToken(token).setUsername(userDetails.getUsername());
+		System.out.println("Request5-"+request);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
